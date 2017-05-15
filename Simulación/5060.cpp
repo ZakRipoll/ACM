@@ -1,11 +1,4 @@
-#include <algorithm>
-#include <cfloat>
-#include <cmath>
-#include <cstdlib>
 #include <iostream>
-#include <iomanip>
-#include <list>
-#include <set>
 #include <vector>
 
 using namespace std;
@@ -23,7 +16,7 @@ vector<int> v;
 
 int main(){
 
-  int n, c, co, k, vida = 0, e, j1, ji, ac;
+  int n, c, co, k, vida, e, j1, ji, ac;
   unsigned pos, p;
 
   cin >> n;
@@ -56,7 +49,7 @@ int main(){
 
         if( vida < 0 ) j1++, ji++, vida=-vida;
 
-        cout <<"Vida: " << vida << " Inici: " <<  M[0][ji].p << " " << ji << " ";
+        cout <<"Vida: " << vida << " Inici: " <<  M[0][M[i][j1].c-1].p << " " << ji << " ";
 
         M[i+1][j].p = MIN(vida+k, M[0][ji].p);
         M[i+1][j].c = M[i][j1].c;
@@ -78,6 +71,7 @@ int main(){
         e++, e<<=1;
       }
     }
+
     RFOR(i, c-1, -1) cout << v[i] << " ";
     cout << endl;
   }
