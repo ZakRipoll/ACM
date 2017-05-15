@@ -16,7 +16,7 @@ vector<int> v;
 
 int main(){
 
-  int n, c, co, k, vida, e, j1, ji, ac;
+  int n, c, co, k, vida, e, j1, ac;
   unsigned pos, p;
 
   cin >> n;
@@ -26,53 +26,52 @@ int main(){
 
     cin >> c >> k;
 
-    co = 1, pos = 0;
+    co = 1;
 
     co <<= c;
 
-    while(co--){
+    for( int pos = 0; pos < co; pos++){
       cin >> p;
       M[0][pos] = make_pair((unsigned)pos+1, (unsigned)p);
-      pos++;
     }
 
-    co = 1;
-
-    co <<= c-1;
+    co >>= 1;
 
     FOR(i, 0, c){
       FOR(j, 0, co){
-        j1 = j<<1, ji = j<<(i+1);
+        j1 = j<<1;
         vida = M[i][j1].p - M[i][j1+1].p;
 
-        cout << "Participants: " << M[i][j1].c << ", " << M[i][j1].p << " vs " << M[i][j1+1].c << " " << ", "  << M[i][j1+1].p << "  ";
-
-        if( vida < 0 ) j1++, ji++, vida=-vida;
-
-        cout <<"Vida: " << vida << " Inici: " <<  M[0][M[i][j1].c-1].p << " " << ji << " ";
+        if( vida < 0 ) j1++, vida=-vida;
 
         M[i+1][j].p = MIN(vida+k, M[0][M[i][j1].c-1].p);
         M[i+1][j].c = M[i][j1].c;
-
-        cout <<  M[i][j1].c << " " <<  M[i][j1].p << " " << endl;
       }
-      cout << endl;
       co >>= 1;
     }
 
     e = 0;
 
-    cout << M[c][e].c << endl;
+    ac = M[c][e].c;
 
     RFOR(i, c, 0){
-      if(M[c][e].c == M[i-1][e].c) v.push_back(M[i-1][e+1].c);
+      if(ac == M[i-1][e].c){
+        v.push_back(M[i-1][e+1].c);
+        e*=2;
+      }
       else{
         v.push_back(M[i-1][e].c);
         e++, e<<=1;
       }
     }
 
-    RFOR(i, c-1, -1) cout << v[i] << " ";
+    cout << ac << endl;
+
+    RFOR(i, c-1, -1){
+      cout << v[i];
+      if( i )
+        cout << " ";
+    }
     cout << endl;
   }
 }
