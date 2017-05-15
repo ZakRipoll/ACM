@@ -51,7 +51,7 @@ int main(){
 
         cout <<"Vida: " << vida << " Inici: " <<  M[0][M[i][j1].c-1].p << " " << ji << " ";
 
-        M[i+1][j].p = MIN(vida+k, M[0][ji].p);
+        M[i+1][j].p = MIN(vida+k, M[0][M[i][j1].c-1].p);
         M[i+1][j].c = M[i][j1].c;
 
         cout <<  M[i][j1].c << " " <<  M[i][j1].p << " " << endl;
