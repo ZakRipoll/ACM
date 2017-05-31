@@ -43,7 +43,7 @@ struct ordre{
 };
 
 vector<P> convexhull(vector<P> v) { // v.SZ >= 2
-  sort(v.begin(), v.end(), ordre());
+  sort(v.begin(), v.end()(;//), ordre());
   vector<Vect> u;
   for (int i = 1; i < (int)v.SZ; i++)
     u.PB(Vect(v[i], v[0]));
