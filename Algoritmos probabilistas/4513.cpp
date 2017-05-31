@@ -27,7 +27,7 @@ using namespace std;
 #define DEL(a,pos,cant) erase(a.begin()+pos,cant)
 
 int main(){
-  int i, j, nombre;
+  int i, j;
   char n;
   std::vector<int> v;
 
