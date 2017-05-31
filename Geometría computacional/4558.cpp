@@ -36,8 +36,14 @@ struct Vect {
   }
 };
 
+struct ordre{
+  inline bool operator() (const pair<T,T>& primer, const pair<T,T>& segon){
+    return primer.Y > segon.Y and primer.X < segon.X;
+  }
+};
+
 vector<P> convexhull(vector<P> v) { // v.SZ >= 2
-  sort(v.begin(), v.end());
+  sort(v.begin(), v.end(), ordre());
   vector<Vect> u;
   for (int i = 1; i < (int)v.SZ; i++)
     u.PB(Vect(v[i], v[0]));
@@ -63,12 +69,13 @@ int main() {
 		vector<P> v;
 		for (int j = 0; j < b; ++j){
 			cin >> x >> y;
-			v.PB(MP(x, y)); 
+			v.PB(MP(x, y));
 		}
 		vector<P> w = convexhull(v);
 		cout << a << " " << w.SZ << endl;
 		for (int j = 0; j < w.SZ; ++j){
-				cout << w[j].X << " " << w[j].Y << endl;
+				cout << "(" << w[j].X << ", " << w[j].Y << "),";
 		}
+    cout << endl;
 	}
 }
