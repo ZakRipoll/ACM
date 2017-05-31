@@ -38,23 +38,24 @@ struct Vect {
 
 struct ordre{
   inline bool operator() (const pair<T,T>& primer, const pair<T,T>& segon){
-    return primer.Y > segon.Y and primer.X < segon.X;
+    return primer.Y > segon.Y or ( primer.Y == segon.Y and primer.X < segon.X);
   }
 };
 
 vector<P> convexhull(vector<P> v) { // v.SZ >= 2
-  sort(v.begin(), v.end()(;//), ordre());
+  sort(v.begin(), v.end(), ordre());
   vector<Vect> u;
   for (int i = 1; i < (int)v.SZ; i++)
     u.PB(Vect(v[i], v[0]));
   sort(u.begin(), u.end());
+  reverse(u.begin(), u.end());
   vector<P> w(v.SZ, v[0]);
   int j = 1;  w[1] = u[0].p;
   for (int i = 1; i < (int)u.SZ; i++) {
     T t = xp(w[j-1], w[j], u[i].p);
-    for (j--; t < 0 && j > 0; j--)
+    for (j--; t > 0 && j > 0; j--)
       t = xp(w[j-1], w[j], u[i].p);
-    j += t > 0 ? 2 : 1;
+    j += t < 0 ? 2 : 1;
     w[j] = u[i].p;
   }
   w.resize(j+1);
