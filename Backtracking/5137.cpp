@@ -10,10 +10,10 @@ int loop( int i, bool s )
 
   r = j*j - i;
 
-  if(s && r&0)
+  if(s && !r&1)
     j--;
 
-  else if( !s && r&1)
+  else if(!s && r&1)
     j--;
 
     r = j*j - i;
@@ -24,14 +24,14 @@ int loop( int i, bool s )
 
     l = loop( r, s );
 
-    if(l == 0) break;
+    if(!l break;
 
     else if(l == -1) return -1;
 
     j--;
     j--;
 
-    if( j == 0 ) return -1;
+    if( !j ) return -1;
 
     r = j*j - i;
   }

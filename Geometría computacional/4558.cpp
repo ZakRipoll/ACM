@@ -38,7 +38,7 @@ struct Vect {
 
 struct ordre{
   inline bool operator() (const pair<T,T>& primer, const pair<T,T>& segon){
-    return primer.Y > segon.Y or ( primer.Y == segon.Y and primer.X < segon.X);
+    return primer.Y > segon.Y or (primer.Y == segon.Y and primer.X < segon.X);
   }
 };
 
