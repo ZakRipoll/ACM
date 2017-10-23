@@ -27,18 +27,44 @@ using namespace std;
 #define DEL(a,pos,cant) erase(a.begin()+pos,cant)
 
 int main(){
-  int i, j;
-  char n;
-  string s;
-  std::vector<int> v;
 
-  while( cin >> i >> n and i ){
-    cout << i << endl;
-    getline(cin, s);
-    for( int i = 0; i < s.length(); i++){
-      v.PB(s[i]-'a');
+  int d, s, p, pos, min, result;
+  int M[200][200];
+  int v[200];
+
+  cin >> d;
+
+  while( d-- ){
+
+    result = 0;
+
+    cin >> s;
+
+    for( int i = 0; i <= s; i++ ){
+      cin >> p;
+      v[i] = p;
     }
 
-    v.clear();
+    for( int i = 0; i < s; i++ )
+      for( int j = i; j <= s; j++ )
+        M[i][j] = v[j] * pow(10, j-i-1);
+
+      int i;
+
+      while( s ){
+        for(i = 0; i < s; i++ ){
+          if( i == 0 ){
+            pos = 0;
+            min = M[i][s];
+          }
+          else if(M[i][s] <= min){
+            pos = i;
+            min = M[i][s];
+          }
+      }
+      result += min;
+      s = pos;
+    }
+    cout << result << endl;
   }
 }
