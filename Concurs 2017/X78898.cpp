@@ -1,36 +1,24 @@
+#include <stdio.h>
 #include <iostream>
 
 using namespace std;
 
-int main(){
+int i;
 
-  int v[2] = {4, 7};
+int n( int j )
+{
+	int e = j * 10 + 4, c = 0;
+	if ( e <= i )
+		c = 1 + n ( e );
+	e += 3;
+	if ( e <= i )
+		c += 1 + n ( e );
+	return c;
+}
 
-  int d, A, B, a, b, j, k;
-
-  cin >> d;
-
-  while( d-- ){
-
-    k = j = a = b = 1;
-
-    cin >> A >> B;
-
-    while( A/=10 ){
-       a++;
-       A%=10;
-    }
-    
-    while( B/=10 ){
-      b++;
-      b%=10;
-    }
-
-    j <<= (a >= b) ? a : b;
-
-    k <<= ((a >= b) ? b : a) -1;
-
-    cout << a << " " << b << " " << j-k << " " << endl;
-
-  }
+int main()
+{
+	while( cin >> i )
+		cout << i << " " << n( 0 ) << endl;
+	return 0;
 }
